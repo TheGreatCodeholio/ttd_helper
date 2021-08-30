@@ -1,0 +1,6 @@
+paramiko~=2.6.0
+scp~=0.13.6
+aiohttp~=3.7.4.post0
+crypto~=1.4.1
+TwitterAPI~=2.7.3
+requests~=2.25.1
