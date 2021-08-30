@@ -1,6 +1,25 @@
 # TTD Helper
 Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry Pi 3 or 4.
 
+## Raspberry Pi Dependancies
+- Opus Tools
+   - sudo apt install opus-tools
+
+## Python 3 Dependencies
+- paramiko~=2.6.0
+- scp~=0.13.6
+- aiohttp~=3.7.4.post0
+- crypto~=1.4.1
+- TwitterAPI~=2.7.3
+- requests~=2.25.1
+
+## Installation
+- Open Terminal window
+- In home folder clone this repository
+- copy ttd_helper.sh to TTD directory
+  - `cp ttd_helper.sh /home/pi/TTD`
+- `pip3 install -r requirements.txt`
+- `sudo apt install opus-tools` 
 
 ## Functions:
 - Upload TTD audio file to SFTP server
@@ -48,32 +67,37 @@ This will clean up local or remote audio files older than x days as set in /etc/
 - audio_url:  Base URL path for your audio files. Example https://example.com/audio
 - ttd_audio_path:  The path to TTD audio folder. Example /home/pi/TTD/audio (no slash at the end)  
 - local_cleanup_settings:  Settings for local cleanup
-- - enabled: 1 or 0 (On/Off)
-- - cleanup_days: 7 (Number of days to keep old files before deleting)
-
-- record_path: path to where you want to save recordings
-- vox_delay: how long to wait at the end of a transmission before stopping recording.
-- vox_length_threshold - Minimum length of recording before sent to Zello
-- vox_volume_threshold - Minimum Audio level before starting record. Default: 10
-- issuer:  Issuer credential from Zello account (see above)
-- private_key: Private Key from Zello Development copied between two sets of triple quotes """HERE""""
-
-## Raspberry Pi Dependancies
-- Opus Tools
-   - sudo apt install opus-tools
-
-## Python 3 Dependencies
-- paramiko~=2.6.0
-- scp~=0.13.6
-- aiohttp~=3.7.4.post0
-- crypto~=1.4.1
-- TwitterAPI~=2.7.3
-- requests~=2.25.1
-
-## Installation
-- `pip3 install -r requirements.txt`
-- `sudo apt install opus-tools`
-- `cp ttd_helper.sh /home/pi/TTD/`
+  - enabled: 1 or 0 (On/Off)
+  - cleanup_days: 7 (Number of days to keep old files before deleting)
+- remote_cleanup_settings:  Settings for remote cleanup (SFTP Server)
+  - enabled: 1 or 0 (On/Off)
+  - cleanup_days: 7 (Number of days to keep old files before deleting)
+- sftp_settings: The settings for SFTP upload
+  -  enabled: 1 or 0 (On/Off)
+  -  remote_path: This is the remote path to upload to. Example /var/www/html/audio
+  -  sftp_user: stfp username
+  -  sftp_pass: stfp password
+  -  sftp_host: sftp hostname Example: example.com
+  -  sftp_port: sftp port number Example: 22
+- pushover_settings:  Settings for Pushover function
+  - enabled: 1 or 0 (On/Off)
+  - token: Pushover API token
+- zello_settings:  Settings for Zello upload
+  -  enabled: 1 or 0 (On/Off)
+  -  username: Zello Username
+  -  password: Zello Password
+  -  token: Zello API token
+  -  issuer: Issuer credential from Zello account (see above Zello Section)
+  -  private_key: Private Key from Zello Development copied between two sets of triple quotes """HERE""""
+- twitter_settings: Settings for Twitter Tweets
+  -  enabled: 1 or 0 (On/Off)
+  -  consumer_key: API Consumer Key
+  -  consumer_secret: API Consumer Secret Key
+  -  access_token: API Access Token Key
+  -  access_token_secret: API Acess Token Secret Key 
 
 ## Running
-- `python3 ZelloCalls.py`
+To run the script configure TTD to ttd_helper.sh for your Tone
+- Post-email Command: ./ttd_helper.sh "[d]" [mp3] 0
+  - on this line we pass [d] (department name), [mp3] (mp3 filename), and pushbullet group token (0 if you are not using pushbullet or don't have a group for that tone) 
+- This will run the command once the tone has been processed and emails have been sent. 
