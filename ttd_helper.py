@@ -23,7 +23,7 @@ if args.department is not None and args.mp3 is not None:
     else:
         print("Not Sending To SFTP")
 
-    if config.pushover_settings["enabled"] == 1 and args.pushover_group is not None:
+    if config.pushover_settings["enabled"] == 1 and args.pushover_group != 0:
         pushover.send_push(args.department, call_mp3, args.pushover_group)
     else:
         print("Not Sending To Pushover")
