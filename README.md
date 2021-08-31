@@ -16,6 +16,7 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 ## Installation
 - Open Terminal window
 - In home folder clone this repository
+  - `git clone https://github.com/TheGreatCodeholio/ttd_helper.git` 
 - copy ttd_helper.sh to TTD directory
   - `cp ttd_helper.sh /home/pi/TTD`
 - `pip3 install -r requirements.txt`
