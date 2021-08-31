@@ -19,7 +19,13 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 - copy ttd_helper.sh to TTD directory
   - `cp ttd_helper.sh /home/pi/TTD`
 - `pip3 install -r requirements.txt`
-- `sudo apt install opus-tools` 
+- `sudo apt install opus-tools`
+
+## Running
+To run the script configure TTD to ttd_helper.sh for your Tone
+- Post-email Command: ./ttd_helper.sh "[d]" [mp3] 0
+  - on this line we pass [d] (department name), [mp3] (mp3 filename), and pushbullet group token (0 if you are not using pushbullet or don't have a group for that tone) 
+- This will run the command once the tone has been processed and emails have been sent. 
 
 ## Functions:
 - Upload TTD audio file to SFTP server
@@ -95,9 +101,3 @@ This will clean up local or remote audio files older than x days as set in /etc/
   -  consumer_secret: API Consumer Secret Key
   -  access_token: API Access Token Key
   -  access_token_secret: API Acess Token Secret Key 
-
-## Running
-To run the script configure TTD to ttd_helper.sh for your Tone
-- Post-email Command: ./ttd_helper.sh "[d]" [mp3] 0
-  - on this line we pass [d] (department name), [mp3] (mp3 filename), and pushbullet group token (0 if you are not using pushbullet or don't have a group for that tone) 
-- This will run the command once the tone has been processed and emails have been sent. 
