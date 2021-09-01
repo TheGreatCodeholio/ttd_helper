@@ -24,6 +24,14 @@ pushover_settings = {
     "token": "pushover-api-token"
 }
 
+mqtt_settings = {
+    "enabled": 0,
+    "mqtt_host": "",
+    "mqtt_port": "",
+    "mqtt_username": "",
+    "mqtt_password": ""
+}
+
 zello_settings = {
     "enabled": 0,
     "username": "ZelloUser",
