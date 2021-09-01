@@ -11,10 +11,10 @@ from Crypto.Hash import SHA256
 
 
 def zello_create_token(config):
-    key = RSA.import_key(config.private_key)
+    key = RSA.import_key(config.zello_settings["private_key"])
     # Create a Zello-specific JWT.  Can't use PyJWT because Zello doesn't support url safe base64 encoding in the JWT.
     header = {"typ": "JWT", "alg": "RS256"}
-    payload = {"iss": config.issuer, "exp": round(time.time() + 60)}
+    payload = {"iss": config.zello_settings["issuer"], "exp": round(time.time() + 60)}
     signer = pkcs1_15.new(key)
     json_header = json.dumps(header, separators=(",", ":"), cls=None).encode("utf-8")
     json_payload = json.dumps(payload, separators=(",", ":"), cls=None).encode("utf-8")
