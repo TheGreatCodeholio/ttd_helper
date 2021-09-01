@@ -21,7 +21,6 @@ sftp_settings = {
 
 pushover_settings = {
     "enabled": 0,
-    "token": "pushover-api-token"
 }
 
 mqtt_settings = {
