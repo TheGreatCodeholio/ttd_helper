@@ -24,8 +24,8 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 
 ## Running
 To run the script configure TTD to ttd_helper.sh for your Tone
-- Post-email Command: ./ttd_helper.sh "[d]" [mp3] 0
-  - on this line we pass [d] (department name), [mp3] (mp3 filename), and pushbullet group token (0 if you are not using pushbullet or don't have a group for that tone) 
+- Post-email Command: ./ttd_helper.sh "[d]" [mp3]
+  - on this line we pass [d] (department/tone name), [mp3] (mp3 filename)
 - This will run the command once the tone has been processed and emails have been sent. 
 
 ## Functions:
@@ -34,11 +34,16 @@ To run the script configure TTD to ttd_helper.sh for your Tone
 - Send a tweet via Twitter
 - Stream audio to Zello
 - Clean up old local and remote audio files
+- Publish to MQTT Topic
 
 ## SFTP Upload
 This is Required if you will be using the Twitter or Pushover functions. You will need the audio uploaded to a remote webserver where it can be accessed by a URL.
 - Your user will need proper permission on the folder you are sending the audio file to.
-- In my case I have the sftp user owning the folder/var/www/html/audio and www-data as the group and 775 permissions to make it writable as the sftp user.
+- In my case I have the sftp user owning the folder /var/www/html/audio and www-data as the group and 775 permissions to make it writable as the sftp user.
+
+## MQTT Topic Publish
+This function will Publish one or two messages to a MQTT topic by connecting to a broker.
+- MQTT requires your tone name in the department.json and the settings set to your preferences. See the file for the formatting. Example: If your TTD Tone name is "Example Fire Department" the json block would start with "example_fire_department"
 
 ## Twitter:
 Request API access for you account https://developer.twitter.com
@@ -49,9 +54,9 @@ Once you have access you will need four tokens.
 
 ## Pushover:
 Create a Application and group for each department.
-You will need each groups token as a paramater when telling TTD to run the helper script
+You will need to add each  Application and groups token to the departments.json for each tone/department 
 
-##Zello
+## Zello
 Create a developer account with Zello to get credentials.  Set up a different account than what you normally use for Zello, as trying to use this script with the same account that you're using on your mobile device will cause problems.
 
 For Zello consumer network:
@@ -67,7 +72,7 @@ For Zello consumer network:
 
 ## File Cleanup
 This will clean up local or remote audio files older than x days as set in /etc/config.py
-- Two seperate configuration sections "local" and "remote"
+- Two separate configuration sections "local" and "remote"
 - Can be enabled so local is cleaned and remote isn't or vise versa or not cleaned at all
 
 ## /etc/config.py
@@ -88,7 +93,12 @@ This will clean up local or remote audio files older than x days as set in /etc/
   -  sftp_port: sftp port number Example: 22
 - pushover_settings:  Settings for Pushover function
   - enabled: 1 or 0 (On/Off)
-  - token: Pushover API token
+- mqtt_settings : Settings for MQTT Function
+  - enabled: 1 or 0 (On/Off)
+  - mqtt_host: MQTT Hostname or IP address
+  - mqtt_port: MQTT Port number
+  - mqtt_pusername: MQTT Username
+  - mqtt_password: MQTT Password
 - zello_settings:  Settings for Zello upload
   -  enabled: 1 or 0 (On/Off)
   -  username: Zello Username
@@ -101,4 +111,15 @@ This will clean up local or remote audio files older than x days as set in /etc/
   -  consumer_key: API Consumer Key
   -  consumer_secret: API Consumer Secret Key
   -  access_token: API Access Token Key
-  -  access_token_secret: API Acess Token Secret Key 
+  -  access_token_secret: API Access Token Secret Key 
+
+## /etc/departments.json
+This file is like the tones.cfg for TTD. If requires each department/tone to be configured within it.
+
+### Settings for each tone/department:
+- pushover_app_token: This is the API token for the application created in Pushover. (Each Tone requires and Application and Group in Pushover)
+- pushover_group_token: This is the Group Token for the group that your application is sending messages to.
+- mqtt_topic: The MQTT Topic name to publish to for this department.
+- mqtt_message_1: The message to publish to the mqtt_topic
+- mqtt_message_2: The second message to publish to the mqtt topic (if set to "" it will skip publishing a second message, useful to turn switches/relays off after a interval)
+- mqtt_interval: If a second message is set this is the interval in seconds between message1 and message 2.

@@ -7,5 +7,14 @@
     "mqtt_message_1": "ALERT ON",
     "mqtt_message_2": "",
     "mqtt_interval": 5
+  },
+  "example_department_2":
+  {
+    "pushover_app_token" : "pushover_application_token",
+    "pushover_group_token": "pushover_subscription_group_token",
+    "mqtt_topic": "dispatch/example_department_2",
+    "mqtt_message_1": "ALERT ON",
+    "mqtt_message_2": "",
+    "mqtt_interval": 5
   }
 }

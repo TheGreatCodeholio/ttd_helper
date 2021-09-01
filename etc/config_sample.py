@@ -26,10 +26,10 @@ pushover_settings = {
 
 mqtt_settings = {
     "enabled": 0,
-    "mqtt_host": "",
-    "mqtt_port": "",
-    "mqtt_username": "",
-    "mqtt_password": ""
+    "mqtt_host": "localhost",
+    "mqtt_port": 1883,
+    "mqtt_username": "username",
+    "mqtt_password": "test1234"
 }
 
 zello_settings = {
