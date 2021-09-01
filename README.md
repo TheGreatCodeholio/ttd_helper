@@ -16,11 +16,17 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 ## Installation
 - Open Terminal window
 - In home folder clone this repository
-  - `git clone https://github.com/TheGreatCodeholio/ttd_helper.git` 
-- copy ttd_helper.sh to TTD directory
+  - `git clone https://github.com/TheGreatCodeholio/ttd_helper.git`
+- Change ttd_helper.sh permissions to allow execution
+  - `chmod a+x ttd_helper.sh`
+- Copy ttd_helper.sh to TTD directory
   - `cp ttd_helper.sh /home/pi/TTD`
 - `pip3 install -r requirements.txt`
 - `sudo apt install opus-tools`
+- Copy departments_sample.json to departments.json (See /etc/departments.json notes)
+  - `cp departments_sample.json departments.json`
+- Copy config_sample.py to config.py (See /etc/config.py notes)
+  - `cp config_sample.py config.py`
 
 ## Running
 To run the script configure TTD to ttd_helper.sh for your Tone
@@ -76,6 +82,8 @@ This will clean up local or remote audio files older than x days as set in /etc/
 - Can be enabled so local is cleaned and remote isn't or vise versa or not cleaned at all
 
 ## /etc/config.py
+Copy config_sample.py to config.py 
+  - `cp config_sample.py config.py`
 - audio_url:  Base URL path for your audio files. Example https://example.com/audio
 - ttd_audio_path:  The path to TTD audio folder. Example /home/pi/TTD/audio (no slash at the end)  
 - local_cleanup_settings:  Settings for local cleanup
@@ -114,6 +122,8 @@ This will clean up local or remote audio files older than x days as set in /etc/
   -  access_token_secret: API Access Token Secret Key 
 
 ## /etc/departments.json
+Copy departments_sample.json to departments.json 
+  - `cp departments_sample.json departments.json`
 This file is like the tones.cfg for TTD. If requires each department/tone to be configured within it.
 
 ### Settings for each tone/department:
