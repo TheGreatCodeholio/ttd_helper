@@ -14,7 +14,7 @@
     "pushover_group_token": "pushover_subscription_group_token",
     "mqtt_topic": "dispatch/example_department_2",
     "mqtt_message_1": "ALERT ON",
-    "mqtt_message_2": "",
-    "mqtt_interval": 5
+    "mqtt_message_2": "ALERT OFF",
+    "mqtt_interval": 120
   }
 }
