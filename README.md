@@ -127,7 +127,7 @@ Copy config_sample.py to config.py
     - sftp_pass: stfp password
     - sftp_host: sftp hostname Example: example.com
     - sftp_port: sftp port number Example: 22
-    - delete_after_upload: 1 or 0 (On/Off)
+    - delete_after_upload: 1 or 0 (On/Off) Deletes MP3 file after uploading to SFTP
   - pushover_settings:  Settings for Pushover function
     - enabled: 1 or 0 (On/Off)
   - mqtt_settings : Settings for MQTT Function
@@ -137,12 +137,13 @@ Copy config_sample.py to config.py
     - mqtt_pusername: MQTT Username
     - mqtt_password: MQTT Password
   - zello_settings:  Settings for Zello upload
-    -  enabled: 1 or 0 (On/Off)
-    -  username: Zello Username
-    -  password: Zello Password
-    -  token: Zello API token
-    -  issuer: Issuer credential from Zello account (see above Zello Section)
-    -  private_key: Private Key from Zello Development copied between two sets of triple quotes """HERE""""
+    - enabled: 1 or 0 (On/Off)
+    - delete_after_stream: 1 or 0 (On/Off) Deletes opus file after streaming to Zello
+    - username: Zello Username
+    - password: Zello Password
+    - token: Zello API token
+    - issuer: Issuer credential from Zello account (see above Zello Section)
+    - private_key: Private Key from Zello Development copied between two sets of triple quotes """HERE""""
   - twitter_settings: Settings for Twitter Tweets
     -  enabled: 1 or 0 (On/Off)
     -  consumer_key: API Consumer Key

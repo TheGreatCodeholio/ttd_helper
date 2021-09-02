@@ -14,9 +14,6 @@ def upload_file(file):
 
     scp = SCPClient(ssh.get_transport(), progress=progress)
     scp.put(file, remote_path=config.sftp_settings["remote_path"])
-    if config.sftp_settings["delete_after_upload"] == 1:
-        os.remove(file)
-
 
 # Define progress callback that prints the current percentage completed for the file
 def progress(filename, size, sent):

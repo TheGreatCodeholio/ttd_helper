@@ -61,6 +61,7 @@ mqtt_settings = {
 
 zello_settings = {
     "enabled": 0,
+    "delete_after_stream": 0,
     "username": "ZelloUser",
     "password": "ZelloPass",
     "token": "ZelloToken",
