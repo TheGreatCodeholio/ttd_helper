@@ -53,6 +53,7 @@ Modify the MP3 that was output by TTD.
 - Low Pass Filter
 - Append another audio file to the beginning based on tone decoded.
   - file to append is determined in the "/etc/departments.json" settings for each tone
+  - "mp3_append_file": "/home/pi/alert.mp3",
 - Normalize Filter
 
 ## SFTP Upload
