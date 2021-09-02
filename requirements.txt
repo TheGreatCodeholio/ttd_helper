@@ -5,3 +5,4 @@ crypto~=1.4.1
 TwitterAPI~=2.7.3
 requests~=2.25.1
 paho-mqtt~=1.5.1
+pydub~=0.25.1

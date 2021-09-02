@@ -12,6 +12,7 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 - crypto~=1.4.1
 - TwitterAPI~=2.7.3
 - requests~=2.25.1
+- pydub~=0.25.1
 
 ## Installation
 - Open Terminal window
