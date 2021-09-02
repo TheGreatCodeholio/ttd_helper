@@ -1,4 +1,5 @@
 import argparse
+import os
 import lib.zello_handler as zello
 import lib.twitter_handler as twitter
 import lib.pushover_handler as pushover
@@ -46,6 +47,8 @@ if args.tone_name is not None and args.mp3 is not None:
         config.token = zello.zello_create_token(config)
         opus_file = zello.zello_convert(config.ttd_audio_path, args.mp3.replace("./audio/", "").replace(".mp3", ""))
         zello.ZelloSend(config, opus_file).zello_init_upload()
+        if os.path.exists(opus_file):
+            os.remove(opus_file)
     else:
         print("Not Sending To Zello")
 
