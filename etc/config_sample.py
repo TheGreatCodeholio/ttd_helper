@@ -10,13 +10,41 @@ remote_cleanup_settings = {
     "cleanup_days": 7
 }
 
+mp3_gain_settings = {
+    "enabled": 0,
+    "gain_db": 10
+}
+
+mp3_convert_stereo = {
+    "enabled": 0,
+}
+
+mp3_high_pass_settings = {
+    "enabled": 0,
+    "cutoff_freq": 1000
+}
+
+mp3_low_pass_settings = {
+    "enabled": 0,
+    "cutoff_freq": 1000
+}
+
+mp3_append_settings = {
+    "enabled": 0
+}
+
+mp3_normalize_settings = {
+    "enabled": 0,
+}
+
 sftp_settings = {
     "enabled": 0,
     "remote_path": "/var/www/html/audio",
     "sftp_user": "user",
     "sftp_pass": "password",
     "sftp_host": "example.com",
-    "sftp_port": 22
+    "sftp_port": 22,
+    "delete_after_upload": 0
 }
 
 pushover_settings = {

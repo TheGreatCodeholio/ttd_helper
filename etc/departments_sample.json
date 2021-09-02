@@ -1,6 +1,7 @@
 {
   "example_department_1":
   {
+    "mp3_append_file": "/home/pi/audio/alert.mp3",
     "pushover_app_token" : "pushover_application_token",
     "pushover_group_token": "pushover_subscription_group_token",
     "mqtt_topic": "dispatch/example_department_1",
@@ -10,6 +11,7 @@
   },
   "example_department_2":
   {
+    "mp3_append_file": "/home/pi/audio/alert.mp3",
     "pushover_app_token" : "pushover_application_token",
     "pushover_group_token": "pushover_subscription_group_token",
     "mqtt_topic": "dispatch/example_department_2",
