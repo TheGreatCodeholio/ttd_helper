@@ -10,5 +10,3 @@ def cleanup_local_audio():
         creation_time = os.path.getctime(path)
         if (current_time - creation_time) // (24 * 3600) >= config.local_cleanup_settings["cleanup_days"]:
             os.unlink(path)
-            print('{} removed'.format(path))
-            print("\n")

@@ -11,13 +11,13 @@ def convert_stereo(file):
 
 def gain_filter(file):
     audio1 = AudioSegment.from_mp3(file)
-    new_audio = audio1.apply_gain(config.mp3_append_settings["gain_db"])
+    new_audio = audio1.apply_gain(config.mp3_gain_settings["gain_db"])
     new_audio.export(file, format="mp3")
 
 
 def append_audio(tone_name, file):
     department_name = tone_name.replace(" ", "_").lower()
-    json_file = open("../etc/departments.json")
+    json_file = open("etc/departments.json")
     departments = json.load(json_file)
     if departments:
         if department_name in departments:
@@ -36,11 +36,11 @@ def normalize_filter(file):
 
 def low_pass_filter(file):
     audio1 = AudioSegment.from_mp3(file)
-    new_audio = effects.low_pass_filter(audio1, cutoff=config.mp3_low_pass_settings["cutoff"])
+    new_audio = effects.low_pass_filter(audio1, cutoff=config.mp3_low_pass_settings["cutoff_freq"])
     new_audio.export(file, format="mp3")
 
 
 def high_pass_filter(file):
     audio1 = AudioSegment.from_mp3(file)
-    new_audio = effects.high_pass_filter(audio1, cutoff=config.mp3_high_pass_settings["cutoff"])
+    new_audio = effects.high_pass_filter(audio1, cutoff=config.mp3_high_pass_settings["cutoff_freq"])
     new_audio.export(file, format="mp3")

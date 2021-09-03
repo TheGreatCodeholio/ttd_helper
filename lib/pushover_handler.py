@@ -9,7 +9,7 @@ def send_push(tone_name, audio_link):
     <a href="{}">Click for Dispatch Audio</a>
     """
     department_name = tone_name.replace(" ", "_").lower()
-    json_file = open("../etc/departments.json")
+    json_file = open("etc/departments.json")
     departments = json.load(json_file)
     if departments:
         if department_name in departments:

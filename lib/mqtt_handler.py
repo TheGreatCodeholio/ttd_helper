@@ -25,7 +25,7 @@ def on_publish(client, userdata, result):
 
 def publish_to_mqtt(tone_name):
     department_name = tone_name.replace(" ", "_").lower()
-    json_file = open("../etc/departments.json")
+    json_file = open("etc/departments.json")
     departments = json.load(json_file)
     if departments:
         if department_name in departments:

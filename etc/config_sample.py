@@ -16,7 +16,7 @@ mp3_gain_settings = {
 }
 
 mp3_convert_stereo = {
-    "enabled": 0,
+    "enabled": 0
 }
 
 mp3_high_pass_settings = {
@@ -34,7 +34,7 @@ mp3_append_settings = {
 }
 
 mp3_normalize_settings = {
-    "enabled": 0,
+    "enabled": 0
 }
 
 sftp_settings = {
@@ -48,7 +48,7 @@ sftp_settings = {
 }
 
 pushover_settings = {
-    "enabled": 0,
+    "enabled": 0
 }
 
 mqtt_settings = {
