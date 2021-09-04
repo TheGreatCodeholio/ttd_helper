@@ -26,10 +26,10 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
   - `cp ttd_helper.sh /home/pi/TTD`
 - `pip3 install -r requirements.txt`
 - `sudo apt install opus-tools`
-- Copy departments_sample.json to departments.json (See /etc/departments.json notes)
-  - `cp etc/departments_sample.json etc/departments.json`
 - Copy config_sample.py to config.py (See /etc/config.py notes)
   - `cp etc/config_sample.py etc/config.py`
+- Once the tones_cfg_path is set in config.py you must run the generate_departments.py once to generate the departments.json
+  - `python3 generate_departments.py`
 
 ## Running
 To run the script configure TTD to ttd_helper.sh for your Tone
@@ -101,6 +101,7 @@ Copy config_sample.py to config.py
   - `cp config_sample.py config.py`
   - audio_url:  Base URL path for your audio files. Example https://example.com/audio
   - ttd_audio_path:  The path to TTD audio folder. Example /home/pi/TTD/audio (no slash at the end)  
+  - tones_cfg_path:  The full path to your TTD tones.cfg file.
   - local_cleanup_settings:  Settings for local cleanup
     - enabled: 1 or 0 (On/Off)
     - cleanup_days: 7 (Number of days to keep old files before deleting)
@@ -154,8 +155,8 @@ Copy config_sample.py to config.py
     -  access_token_secret: API Access Token Secret Key 
 
 ## /etc/departments.json
-Copy departments_sample.json to departments.json 
-  - `cp departments_sample.json departments.json`
+Once the tones_cfg_path is set in config.py you may run the generate_departments.py to generate the departments.json
+  - `python3 generate_departments.py`
 This file is like the tones.cfg for TTD. If requires each department/tone to be configured within it.
 
 ### Settings for each tone/department:
