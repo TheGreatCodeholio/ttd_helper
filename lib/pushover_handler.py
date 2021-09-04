@@ -14,10 +14,11 @@ def send_push(tone_name, audio_link):
     if departments:
         if department_name in departments:
             data = departments[department_name]
-            r = requests.post("https://api.pushover.net/1/messages.json", data={
-                "token": data["pushover_app_token"],
-                "user": data["pushover_group_token"],
-                "html": 1,
-                "message": message_string.format(department_name, audio_link)
-            })
-            print(r.text)
+            if data["pushover_app_token"] is not None and data["pushover_group_token"] is not None:
+                r = requests.post("https://api.pushover.net/1/messages.json", data={
+                    "token": data["pushover_app_token"],
+                    "user": data["pushover_group_token"],
+                    "html": 1,
+                    "message": message_string.format(department_name, audio_link)
+                })
+

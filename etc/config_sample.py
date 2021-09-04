@@ -1,5 +1,6 @@
 audio_url = "https://example.com"
 ttd_audio_path = "/home/pi/TTD/audio"
+tones_cfg_path = "/home/pi/TTD/tones.cfg"
 
 local_cleanup_settings = {
     "enabled": 0,

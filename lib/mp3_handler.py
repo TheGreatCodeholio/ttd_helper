@@ -1,4 +1,4 @@
-from pydub import AudioSegment, silence, effects
+from pydub import AudioSegment, effects
 import etc.config as config
 import json
 
@@ -22,10 +22,11 @@ def append_audio(tone_name, file):
     if departments:
         if department_name in departments:
             data = departments[department_name]
-            audio1 = AudioSegment.from_mp3(file)
-            audio2 = AudioSegment.from_mp3(data["mp3_append_file"])
-            new_audio = audio2 + audio1
-            new_audio.export(file, format="mp3")
+            if data["mp3_append_file"] is not None:
+                audio1 = AudioSegment.from_mp3(file)
+                audio2 = AudioSegment.from_mp3(data["mp3_append_file"])
+                new_audio = audio2 + audio1
+                new_audio.export(file, format="mp3")
 
 
 def normalize_filter(file):
