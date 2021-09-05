@@ -94,11 +94,6 @@
           ?>
 
 
-        <div class="container footer">
-            <div class="row">
-                <a class="icarey-orange-text mt-4 mb-4 ml-4" href="https://www.icarey.net">&nbsp;iCarey Computer Services &copy;2009-<?php echo date('Y');?></a>
-            </div>
-        </div>
       </div>
       </div>
     </div> <!-- Main Container Close -->

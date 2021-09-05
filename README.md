@@ -125,8 +125,8 @@ Copy config_sample.py to config.py
     - mysql_host:  MySQL hostname
     - mysql_port:  MySQL Port number
     - mysql_username: MySQL Username
-    - mysql_passwrod: MySQL Password
-    - mysql_databse: MySQL Database
+    - mysql_password: MySQL Password
+    - mysql_database: MySQL Database
   - local_cleanup_settings:  Settings for local cleanup
     - enabled: 1 or 0 (On/Off)
     - cleanup_days: 7 (Number of days to keep old files before deleting)
