@@ -1,0 +1,36 @@
+body {
+    background-color: #272727;
+    color: #b7c2c0;
+    font-family: "Ubuntu",sans-serif;
+}
+
+/*Page Title Format */
+.pagetitle {
+    margin-top: 40px;
+    font-size:40px;
+    text-shadow:0 1px 0 #b7c2c0;
+    text-align:center;
+    padding:15px 15px;
+    margin-bottom:20px;
+    border-bottom:3px outset #d40000;
+    position:relative;
+}
+
+/* Well Container Styles */
+.well-bcfire {
+    background-color: #3e3e3e ;
+    border: 1px solid #d40000;
+    padding:15px 15px;
+    border-radius:0.3em;
+    margin-top:20px;
+}
+
+/* Footer Style */
+.footer {
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+    border:1px solid #d40000;
+    border-radius:0.3em;
+    background-color: #3e3e3e;
+}

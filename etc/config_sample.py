@@ -2,6 +2,15 @@ audio_url = "https://example.com"
 ttd_audio_path = "/home/pi/TTD/audio"
 tones_cfg_path = "/home/pi/TTD/tones.cfg"
 
+mysql_settings = {
+    "enabled": 1,
+    "mysql_host": "localhost",
+    "mysql_port": 3306,
+    "mysql_username": "ttd_helper",
+    "mysql_password": "reThd68eVVC9YQVc",
+    "mysql_database": "ttd_helper",
+}
+
 local_cleanup_settings = {
     "enabled": 0,
     "cleanup_days": 7
@@ -9,6 +18,10 @@ local_cleanup_settings = {
 remote_cleanup_settings = {
     "enabled": 0,
     "cleanup_days": 7
+}
+
+mp3_appendtext_settings = {
+    "enabled": 1
 }
 
 mp3_gain_settings = {

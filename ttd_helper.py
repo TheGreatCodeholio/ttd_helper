@@ -7,6 +7,7 @@ import lib.cleanup_handler as cleanup
 import lib.mqtt_handler as mqtt
 import lib.sftp_handler as sftp
 import lib.mp3_handler as mp3
+from lib.database_handler import Database
 import etc.config as config
 
 parser = argparse.ArgumentParser(description='Process Arguments.')
@@ -19,28 +20,34 @@ if args.tone_name is not None and args.mp3 is not None:
     mp3_path = config.ttd_audio_path + "/" + args.mp3.replace("./audio/", "")
 
     # Mp3 Manipulation In order gain -> stereo -> low pass -> high pass -> append -> normalize
+    if config.mp3_convert_stereo["enabled"] == 1:
+        print("MP3 Append Tone Name Audio Enabled")
+        mp3.append_audiotext(args.tone_name, mp3_path)
+    else:
+        print("Not Appending Tone Name Audio")
+
     if config.mp3_gain_settings["enabled"] == 1:
         print("Gain Enabled")
-        mp3.gain_filter(mp3_path)
+        mp3.gain_filter(args.tone_name, mp3_path)
     else:
         print("Not Changing Mp3 Gain")
 
     if config.mp3_convert_stereo["enabled"] == 1:
         print("MP3 Stereo Convert Enabled")
-        mp3.convert_stereo(mp3_path)
+        mp3.convert_stereo(args.tone_name, mp3_path)
     else:
         print("Not Changing Mp3 From Mono")
 
     if config.mp3_high_pass_settings["enabled"] == 1:
         print("MP3 High Pass Filter Enabled")
 
-        mp3.high_pass_filter(mp3_path)
+        mp3.high_pass_filter(args.tone_name, mp3_path)
     else:
         print("Not Filtering Mp3 High Pass")
 
     if config.mp3_low_pass_settings["enabled"] == 1:
         print("MP3 Low Pass Filter Enabled")
-        mp3.low_pass_filter(mp3_path)
+        mp3.low_pass_filter(args.tone_name, mp3_path)
     else:
         print("Not Filtering Mp3 Low Pass")
 
@@ -57,12 +64,20 @@ if args.tone_name is not None and args.mp3 is not None:
     else:
         print("Not Sending To SFTP")
 
+    if config.mysql_settings["enabled"] == 1:
+        print("MySQL Enabled")
+        Database().add_new_call(args.tone_name, mp3_url)
+    else:
+        print("Not Logging To MySQL")
+
     if config.pushover_settings["enabled"] == 1:
+        print("Pushover Enabled")
         pushover.send_push(args.tone_name, mp3_url)
     else:
         print("Not Sending To Pushover")
 
     if config.mqtt_settings["enabled"] == 1:
+        print("MQTT Enabled")
         mqtt.publish_to_mqtt(args.tone_name)
     else:
         print("Not Sending To MQTT")

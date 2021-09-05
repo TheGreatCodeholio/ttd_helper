@@ -6,3 +6,5 @@ TwitterAPI~=2.7.3
 requests~=2.25.1
 paho-mqtt~=1.5.1
 pydub~=0.25.1
+mysql-connector-python~=8.0.23
+pyttsx3~=2.90

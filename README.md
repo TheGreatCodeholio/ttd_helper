@@ -1,7 +1,7 @@
 # TTD Helper
 Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry Pi 3 or 4.
 
-## Raspberry Pi Dependancies
+## Raspberry Pi Dependencies
 - Opus Tools
    - sudo apt install opus-tools
 
@@ -13,6 +13,8 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
 - TwitterAPI~=2.7.3
 - requests~=2.25.1
 - pydub~=0.25.1
+- mysql-connector-python~=8.0.23
+- pyttsx3~=2.90
 
 ## Installation
 - Open Terminal window
@@ -24,8 +26,14 @@ Python script to add functionality to TTD.  Designed for Python 3.7+ Raspberry P
   - `chmod a+x ttd_helper.sh`
 - Copy ttd_helper.sh to TTD directory
   - `cp ttd_helper.sh /home/pi/TTD`
-- `pip3 install -r requirements.txt`
-- `sudo apt install opus-tools`
+- Install Python3 Modules
+  - `pip3 install -r requirements.txt`
+- Install Raspberry Pi Dependencies
+  - `sudo apt install opus-tools`
+- Change install.sh permissions to allow execution
+  - `chmod a+x install.sh`
+- Run install.sh to install and configure MySQL NGINX and PHP, and ttd_helper database for MySQL.
+  - `./install.sh`
 - Copy config_sample.py to config.py (See /etc/config.py notes)
   - `cp etc/config_sample.py etc/config.py`
 - Once the tones_cfg_path is set in config.py you must run the generate_departments.py once to generate the departments.json
@@ -38,7 +46,9 @@ To run the script configure TTD to ttd_helper.sh for your Tone
 - This will run the command once the tone has been processed and emails have been sent. 
 
 ## Functions:
+- Web Interface for Today's Calls using MySQL PHP and NGINX
 - Manipulate TTD MP3 with filters, gain, or append audio file to the beginning.
+- Store Call in MySQL Database and view todays calls via Webinterface
 - Upload TTD audio file to SFTP server
 - Send Notification via Pushover
 - Send a tweet via Twitter
@@ -47,7 +57,8 @@ To run the script configure TTD to ttd_helper.sh for your Tone
 - Publish to MQTT Topic
 
 ## MP3 Manipulation
-Modify the MP3 that was output by TTD. 
+Modify the MP3 that was output by TTD.
+- Append Text to Speech tone name to start of file.
 - Gain level 
 - Convert to Stereo
 - High Pass Filter
@@ -56,6 +67,13 @@ Modify the MP3 that was output by TTD.
   - file to append is determined in the "/etc/departments.json" settings for each tone
   - "mp3_append_file": "/home/pi/alert.mp3",
 - Normalize Filter
+
+## MySQL and Web Interface
+Stores calls in MySQL database and can display them via web interface.
+- This needs to be setup with install.sh
+  - install.sh will install nginx (web server), php (web script), and mariadb (database service)
+  - It will then create the database and user as seen in mysql_settings in config_sample.py.
+  - Lastly it will configure the web server.  It will be available at http://<raspberry_pi-ipaddress>
 
 ## SFTP Upload
 This is Required if you will be using the Twitter or Pushover functions. You will need the audio uploaded to a remote webserver where it can be accessed by a URL.
@@ -102,12 +120,21 @@ Copy config_sample.py to config.py
   - audio_url:  Base URL path for your audio files. Example https://example.com/audio
   - ttd_audio_path:  The path to TTD audio folder. Example /home/pi/TTD/audio (no slash at the end)  
   - tones_cfg_path:  The full path to your TTD tones.cfg file.
+  - mysql_settings: Logs Calls to MySQL so they can be displayed via Web interface.
+    - enabled: 1 or 0 (On/Off)  Before enabling run install.sh
+    - mysql_host:  MySQL hostname
+    - mysql_port:  MySQL Port number
+    - mysql_username: MySQL Username
+    - mysql_passwrod: MySQL Password
+    - mysql_databse: MySQL Database
   - local_cleanup_settings:  Settings for local cleanup
     - enabled: 1 or 0 (On/Off)
     - cleanup_days: 7 (Number of days to keep old files before deleting)
   - remote_cleanup_settings:  Settings for remote cleanup (SFTP Server)
     - enabled: 1 or 0 (On/Off)
     - cleanup_days: 7 (Number of days to keep old files before deleting)
+  - mp3_appentext_settings:
+    - enabled: 1 or 0 (On/Off)
   - mp3_gain_settings: The settings for MP3 Gain Manipulation
     - enabled: 1 or 0 (On/Off)
     - gain_db: db to increase audio volume
